@@ -14,7 +14,7 @@ const BookInstance = require("./models/bookInstance");
 const Genre = require("./models/genre");
 require("dotenv").config();
 
-mongoose.connect(process.env.CONNECTION_STRING);
+mongoose.connect(process.env.MONGO_PRIVATE_URL);
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
