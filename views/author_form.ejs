@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+      integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-2">
+          <ul class="sidebar-nav">
+            <li><a href="/catalog">Home</a></li>
+            <li><a href="/catalog/books">All books</a></li>
+            <li><a href="/catalog/authors">All authors</a></li>
+            <li><a href="/catalog/genres">All genres</a></li>
+            <li><a href="/catalog/bookinstances">All book-instances</a></li>
+            <hr />
+            <li><a href="/catalog/author/create">Create new author</a></li>
+            <li><a href="/catalog/genre/create">Create new genre</a></li>
+            <li><a href="/catalog/book/create">Create new book</a></li>
+            <li><a href="/catalog/bookinstance/create">Create new book instance (copy)</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-10">
+          <h1><%= title %></h1>
+          <form method="POST">
+            <div class="form-group">
+              <label>
+                First name:
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="First name"
+                  name="first_name"
+                  required
+                  value="<%= author === undefined ? '' : author.first_name %>"
+                />
+              </label>
+              <label>
+                Family name:
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="Family name"
+                  name="family_name"
+                  required
+                  value="<%= author === undefined ? '' : author.family_name %>"
+                />
+              </label>
+            </div>
+            <div class="form-group">
+              <label>
+                Date of birth:
+                <input
+                  class="form-control"
+                  type="date"
+                  name="date_of_birth"
+                  placeholder="mm/dd/yyyy"
+                  value="<%= author === undefined ? '' :
+                !author.date_of_birth ? `` : author.date_of_birth_yyyy_mm_dd
+                %>"
+                />
+              </label>
+              <label>
+                Date of death:
+                <input
+                  class="form-control"
+                  type="date"
+                  name="date_of_death"
+                  placeholder="mm/dd/yyyy"
+                  value="<%= author === undefined ? '' : !author.date_of_death ? ``: author.date_of_death_yyyy_mm_dd %>"
+                />
+              </label>
+            </div>
+
+            <button class="btn btn-primary">Submit</button>
+            <% errors.map((error) => { %>
+            <li><%= error.msg %></li>
+            <% }); %>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
